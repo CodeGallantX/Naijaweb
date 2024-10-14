@@ -1,60 +1,50 @@
-# naijaweb
-This project was inspired by the [finewebpaper](https://arxiv.org/abs/2406.17557) and the [webtext](https://paperswithcode.com/dataset/webtext) ([openwebtext](https://huggingface.co/datasets/Skylion007/openwebtext) also) dataset
-Note: The webscraping was done on **google colab**, the google colab free memory plus the **easy google drive integration** made this easiy. The clean_download_data.ipynb, clean_download_data_403.ipynb, download_webpages.ipynb, webscrape_403.ipynb, webscrape_nairaland.ipynb files were run on 9 different notebooks (3 notebooks on 3 google colab accounts), to reduce the time it would have taken to run the files, although they were all linked to one drive folder ("/content/drive/MyDrive/nairaland_webtext") and all the files were saved in that folder.
+# NaijaWeb
 
-The dataset can be found [here](https://huggingface.co/datasets/saheedniyi/naijaweb).
+NaijaWeb is a web scraping project inspired by the [FineWeb paper](https://arxiv.org/abs/2406.17557) and the [WebText dataset](https://paperswithcode.com/dataset/webtext), including the [OpenWebText dataset](https://huggingface.co/datasets/Skylion007/openwebtext).
 
-- [Webscrape_nairaland.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/webscrape_nairaland.ipynb)
+The scraping was performed on **Google Colab** due to its **free memory** and **easy integration with Google Drive**. Several notebooks (`clean_download_data.ipynb`, `clean_download_data_403.ipynb`, `download_webpages.ipynb`, `webscrape_403.ipynb`, and `webscrape_nairaland.ipynb`) were run across 9 different Colab notebooks (3 notebooks per Colab account) to expedite the process. All notebooks were linked to a single Google Drive folder: `/content/drive/MyDrive/nairaland_webtext`, where the files were saved.
 
-This file webscrapes and extract the posts in a particular **section** from [Nairaland](https://www.nairaland.com/), the script downloads all the **links to the posts for each section** and saves them to a pickle file, then each of the posts are downloaded, because of the limited runtime for google colab, I had to create 9 different notebooks and I splitted the long list of the links to the posts into small chunks then I downloaded them, to make the process faster.
+The dataset is available on Hugging Face: [NaijaWeb Dataset](https://huggingface.co/datasets/saheedniyi/naijaweb).
 
-- [extract_outboundlinks.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/extract_outboundlinks.ipynb)
+## Notebooks and Process
 
-This file extract all the outbound links from the downloaded posts, filters off some doamins, does some simple cleaning (remove full stops at the end of links, remove consecutive full stops in links) and saves them into a csv file.
+### [webscrape_nairaland.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/webscrape_nairaland.ipynb)
+This notebook scrapes and extracts posts from a specific **section** on [Nairaland](https://www.nairaland.com/). The script first collects all **post links** for each section and saves them to a pickle file. It then downloads the individual posts. Due to Colab's limited runtime, the process was distributed across 9 notebooks, where the long list of post links was split into smaller chunks to speed up the downloads.
 
-- [download_webpages.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/download_webpages.ipynb)
+### [extract_outboundlinks.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/extract_outboundlinks.ipynb)
+This notebook extracts all outbound links from the downloaded posts, filters out certain domains, performs basic cleaning (removing full stops at the end of links and consecutive full stops), and saves the cleaned links to a CSV file.
 
-This page downloads the webpages from the outbound links extracted from the previous file. It downloads the file in a batch of 1000 and saves them unto a pickle file. I ran this in 9 noteboks also because of time.
+### [download_webpages.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/download_webpages.ipynb)
+This notebook downloads webpages from the outbound links extracted in the previous step. The links are downloaded in batches of 1,000 and saved as pickle files. This process was also run across 9 notebooks to save time.
 
-- [clean_download_data.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/clean_download_data.ipynb)
+### [clean_download_data.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/clean_download_data.ipynb)
+This notebook uses [Trafilatura](https://trafilatura.readthedocs.io/en/latest/) (as inspired by the FineWeb paper) to extract and clean the downloaded webpages. Pages that returned a "403 Forbidden" response were saved for later handling.
 
-This file extract and cleans the downloaded pages using [Trafilatura](https://trafilatura.readthedocs.io/en/latest/) (inspired by the fineweb paper) and saves the cleaned files, webpages that gave a Forbidden response (403) bwere saved to be worked on later.
+### [webscrape_403.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/webscrape_403.ipynb)
+This notebook redownloads webpages that initially returned a 403 error using [Cloudscraper](https://pypi.org/project/cloudscraper/).
 
-- [webscrape_403.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/webscrape_403.ipynb)
+### [clean_download_data_403.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/clean_download_data_403.ipynb)
+This notebook extracts and cleans the data from the webpages that were redownloaded due to the 403 error.
 
-Webpages that returned a 403 response initially were redownloaded using [cloudscraper](https://pypi.org/project/cloudscraper/).
+### [fineweb_clean_data.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/fineweb_clean_data.ipynb)
+This notebook applies the same cleaning process used on the FineWeb dataset, following these steps:
+- 🔻 **FILTER**: 😈 URL filter
+- 🔻 **FILTER**: 👯 Gopher repetition
+- 🔻 **FILTER**: 🥇 Gopher quality
+- 🔻 **FILTER**: ⛰ C4 quality
+- 🔻 **FILTER**: 🍷 FineWeb quality
+- 🔢 **TOKENIZER**: 📊 Counter
+- 💽 **WRITER**: 🐿 Jsonl
 
-- [clean_download_data_403.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/clean_download_data_403.ipynb)
+### [PII_formatter.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/PII_formatter.ipynb)
+This notebook removes Personally Identifiable Information (PII) such as emails and IP addresses from the dataset.
 
-The 403 redownloaded files were cleaned and extracted.
+### [push_to_hub.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/push_to_hub.ipynb)
+This notebook pushes the full dataset to Hugging Face and calculates the educational score of the dataset using the [FineWeb EDU classifier](https://huggingface.co/HuggingFaceFW/fineweb-edu-classifier). Note that the classifier's predictions may not be fully accurate due to the limited amount of Nigerian data the model was likely trained on.
 
-- [fineweb_clean_data.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/fineweb_clean_data.ipynb)
+### [extract_naijaweb_edu.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/extract_naijaweb_edu.ipynb)
+This notebook detects the language of the documents and creates two subsets of the dataset: **[NaijaWeb EDU](https://huggingface.co/datasets/saheedniyi/naijaweb-edu)** and **[NaijaWeb EDU2](https://huggingface.co/datasets/saheedniyi/naijaweb-edu2)**, using the educational score. This is an attempt to recreate the FineWeb EDU dataset with Nigerian content.
 
-The file applies the same cleaning doned on the pouplar fineweb dataset on the data. 
-It fllows the following steps
-🔻 - FILTER: 😈 Url-filter
-🔻 - FILTER: 👯 Gopher Repetition
-🔻 - FILTER: 🥇 Gopher Quality
-🔻 - FILTER: ⛰ C4 Quality
-🔻 - FILTER: 🍷 FineWeb Quality
-🔢 - TOKENIZER: 📊 Counter
-💽 - WRITER: 🐿 Jsonl
+---
 
-- [PII_formatter.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/PII_formatter.ipynb)
-
-This removes Peronsal identifiable information from the dataset, email and IP address.
-
-- [push_to_hub.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/push_to_hub.ipynb)
-
-This file pushes the full dataset to huggingface and calculates the educational score of the dataset, using the [fineweb edu classifier](https://huggingface.co/HuggingFaceFW/fineweb-edu-classifier). The classifier predictions might not be as accurate because the model **probably** wasn't trained on as much nigerian data.
-
-- [extract_naijaweb_edu.ipynb]()
-
-This file gets the language of the documents and creates two subsrtsz rom thde datasets,**[naijaweb edu](https://huggingface.co/datasets/saheedniyi/naijaweb-edu)** and **[naijaweb edu2](https://huggingface.co/datasets/saheedniyi/naijaweb-edu2)**, using the educational score, an attempt at recreating the fineweb edu dataset.
-
-Give the repo a star, thank you!
-
-
-
-
-
+If you find this project helpful, consider giving the repo a star. Thank you!
