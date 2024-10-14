@@ -16,13 +16,13 @@ Thsi page downloads the webpages from the outbound links extracted from the prev
 - [clean_download_data.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/clean_download_data.ipynb)
 This file extract and cleans the downloaded pages using [Trafilatura](https://trafilatura.readthedocs.io/en/latest/) (inspired by the fineweb paper) and saves the cleaned files, webpages that gave a Forbidden response (403) bwere saved to be worked on later.
 
-- webscrape_403.ipynb
-Webpages that returned a 403 response were redownloaded using cloudscraper.
+- [webscrape_403.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/webscrape_403.ipynb)
+Webpages that returned a 403 response initially were redownloaded using [cloudscraper](https://pypi.org/project/cloudscraper/).
 
-- clean_download_data_403.ipynb
+- [clean_download_data_403.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/clean_download_data_403.ipynb)
 The 403 redownloaded files were cleaned and extracted.
 
-- fineweb_clean_data.ipynb
+- [fineweb_clean_data.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/fineweb_clean_data.ipynb)
 The file applies the same cleaning doned on the pouplar fineweb dataset on the data. 
 It fllows the following steps
 🔻 - FILTER: 😈 Url-filter
@@ -33,16 +33,16 @@ It fllows the following steps
 🔢 - TOKENIZER: 📊 Counter
 💽 - WRITER: 🐿 Jsonl
 
-- PII_formatter.ipynb
-This removes Peronsal iodentifiabke information from the dataset, email and IP address.
+- [PII_formatter.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/PII_formatter.ipynb)
+This removes Peronsal identifiable information from the dataset, email and IP address.
 
-- push_to_hub.ipynb
-This file pushes the full dataset to huggingface and calculates the educations score of the dataset, using the fineweb edu classifoer. The classifier predictions might not be as accurate because tjhe model **probably** wasnt trained on as much nigerian data.
+- [push_to_hub.ipynb](https://github.com/saheedniyi02/naijaweb/blob/main/push_to_hub.ipynb)
+This file pushes the full dataset to huggingface and calculates the educational score of the dataset, using the [fineweb edu classifier](https://huggingface.co/HuggingFaceFW/fineweb-edu-classifier). The classifier predictions might not be as accurate because the model **probably** wasn't trained on as much nigerian data.
 
-- extract_naijaweb_edu.ipynb
-  This file gets the language of the dataser anbd creates two subsrtsz rom thde datasets,**naijaweb edu** and **naijaweb edu2**, using the educational score, an attemot at recreating the fineweb edu dataset.
+- [extract_naijaweb_edu.ipynb]()
+  This file gets the language of the documents and creates two subsrtsz rom thde datasets,**[naijaweb edu](https://huggingface.co/datasets/saheedniyi/naijaweb-edu)** and **[naijaweb edu2](https://huggingface.co/datasets/saheedniyi/naijaweb-edu2)**, using the educational score, an attempt at recreating the fineweb edu dataset.
 
-
+Give the repo a star, thank you!
 
 
 
