@@ -1,5 +1,5 @@
 # naijaweb
-Tis project was inspired by the [finewebpaper](https://arxiv.org/abs/2406.17557) and the [webtext](https://paperswithcode.com/dataset/webtext) ([openwebtext](https://huggingface.co/datasets/Skylion007/openwebtext) also) dataset
+This project was inspired by the [finewebpaper](https://arxiv.org/abs/2406.17557) and the [webtext](https://paperswithcode.com/dataset/webtext) ([openwebtext](https://huggingface.co/datasets/Skylion007/openwebtext) also) dataset
 Note: The webscraping was done on **google colab**, the google colab free memory plus the **easy google drive integration** made this easiy. The clean_download_data.ipynb, clean_download_data_403.ipynb, download_webpages.ipynb, webscrape_403.ipynb, webscrape_nairaland.ipynb files were run on 9 different notebooks (3 notebooks on 3 google colab accounts), to reduce the time it would have taken to run the files, although they were all linked to one drive folder ("/content/drive/MyDrive/nairaland_webtext") and all the files were saved in that folder.
 
 The dataset can be found [here](https://huggingface.co/datasets/saheedniyi/naijaweb).
