@@ -38,8 +38,7 @@ This removes Peronsal iodentifiabke information from the dataset, email and IP a
 This file pushes the full dataset to huggingface and calculates the educations score of the dataset, using the fineweb edu classifoer. The classifier predictions might not be as accurate because tjhe model **probably** wasnt trained on as much nigerian data.
 
 - extract_naijaweb_edu.ipynb
-
-This file gets the language of the dataser anbd creates two subsrtsz rom thde datasets,**naijaweb edu** and **naijaweb edu2**, using the educational score, an attemot at recreating the fineweb edu dataset.
+  This file gets the language of the dataser anbd creates two subsrtsz rom thde datasets,**naijaweb edu** and **naijaweb edu2**, using the educational score, an attemot at recreating the fineweb edu dataset.
 
 
 
